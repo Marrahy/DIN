@@ -1,11 +1,15 @@
+import 'package:ejercicio_2/presentation/providers/chat_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MsgFieldBox extends StatelessWidget {
-  //final ValueChanged<String> onValue;
-  const MsgFieldBox({super.key});
+  final ValueChanged<String> onValue;
+
+  const MsgFieldBox({super.key, required this.onValue});
 
   @override
   Widget build(BuildContext context) {
+    final ChatProvider stateCProvider = context.read();
     final esquemaColor = Theme.of(context).colorScheme;
     final bordeCajaInput = UnderlineInputBorder(
         borderSide: BorderSide(color: esquemaColor.surface),
@@ -20,7 +24,8 @@ class MsgFieldBox extends StatelessWidget {
       focusNode: focusNode,
       onFieldSubmitted: (value) {
         final cadena = textController.value.text;
-        //onValue(cadena);
+        onValue(cadena);
+        //stateCProvider.enviarMensaje(cadena);
         textController.clear();
         focusNode.requestFocus();
       },
@@ -36,7 +41,8 @@ class MsgFieldBox extends StatelessWidget {
           icon: const Icon(Icons.send),
           onPressed: () {
             final cadena = textController.value.text;
-            //onValue(cadena);
+            onValue(cadena);
+            //stateCProvider.enviarMensaje(cadena);
             textController.clear();
           },
         )
