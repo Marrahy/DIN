@@ -48,7 +48,7 @@ class _ImageBubble extends StatelessWidget {
             return Container(
               height: 150,
               child: const Center(child: Text('Cargando imagen...')));
-          }return Text('Cargando imagen...');
+          } return Text('Cargando imagen...');
         },
     )
     );
